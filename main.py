@@ -13,10 +13,10 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 try:
-  from supabase import create_client
-  supabase = create_client(SUPABASE_URL, SUPABASE_KEY) if SUPABASE_URL else None
+    from supabase import create_client
+    supabase = create_client(SUPABASE_URL, SUPABASE_KEY) if SUPABASE_URL else None
 except:
-supabase = None
+  supabase = None
 
 # --- 21 LANGUAGES ---
 LANG_PROMPTS = {
