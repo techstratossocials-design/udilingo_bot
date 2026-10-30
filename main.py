@@ -528,8 +528,8 @@ def main() -> None:
         len(LANG_PROMPTS),
         supabase is not None,
     )
-  threading.Thread(target=run_flask, daemon=True).start()
-  application.run_polling(drop_pending_updates=True,allowed_updates=Update.ALL_TYPES)
+    threading.Thread(target=run_flask, daemon=True).start()
+    application.run_polling(drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
