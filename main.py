@@ -499,7 +499,7 @@ async def error_handler(
 # ---------------------------------------------------------------------
 
 def main() -> None:
-    application = Application.builder().token(BOT_TOKEN).build()
+    application = Application.builder().token(BOT_TOKEN).connect_timeout(30).read_timeout(30).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("leaderboard", leaderboard))
@@ -519,7 +519,7 @@ def main() -> None:
         len(LANG_PROMPTS),
         supabase is not None,
     )
-    application.run_polling()
+    application.run_polling(drop_pending_updates=True,allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
