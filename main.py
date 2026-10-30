@@ -19,7 +19,16 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+from flask import Flask
+import threading
 
+flask_app = Flask(__name__)
+@flask_app.route('/')
+def home():
+    return "UDI LINGO Bot is Live!"
+
+def run_flask():
+    flask_app.run(host='0.0.0.0',port=10000)
 from openai import OpenAI
 from telegram import (
     Update,
@@ -519,7 +528,8 @@ def main() -> None:
         len(LANG_PROMPTS),
         supabase is not None,
     )
-    application.run_polling(drop_pending_updates=True,allowed_updates=Update.ALL_TYPES)
+      threading.Thread(target=run_flask, daemon=True).start()
+  application.run_polling(drop_pending_updates=True,allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
